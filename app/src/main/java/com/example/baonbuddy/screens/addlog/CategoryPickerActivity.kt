@@ -35,7 +35,7 @@ class CategoryPickerActivity : AppCompatActivity() {
         btns.forEach { (id, category) ->
             findViewById<AppCompatButton>(id).setOnClickListener {
                 selectedCategory = category
-                // Visual feedback (optional: highlight selected)
+                // Visual feedback
                 navigateToAmountInput(selectedCategory)
             }
         }

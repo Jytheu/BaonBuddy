@@ -7,16 +7,20 @@ import org.json.JSONObject
 
 class AmountInputModel(private val context: Context) : AmountInputContract.Model {
 
+    private fun getCurrentEmail(): String {
+        return BaonBuddy.getSharedPrefs(context).getString("CURRENT_USER_EMAIL", "") ?: ""
+    }
+
     override fun saveTransaction(type: String, amount: Int, category: String): Boolean {
         val sharedPref = BaonBuddy.getSharedPrefs(context)
-        val currentBalance = sharedPref.getInt("BALANCE", 0)
-        val newBalance = if (type == "EXPENSE") {
-            currentBalance - amount
-        } else {
-            currentBalance + amount
-        }
+        val email = getCurrentEmail()
         
-        val transactionsJson = sharedPref.getString("TRANSACTIONS", "[]")
+        val balanceKey = "${email}_BALANCE"
+        val currentBalance = sharedPref.getInt(balanceKey, 0)
+        val newBalance = if (type == "EXPENSE") currentBalance - amount else currentBalance + amount
+        
+        val transactionsKey = "${email}_TRANSACTIONS"
+        val transactionsJson = sharedPref.getString(transactionsKey, "[]")
         val jsonArray = JSONArray(transactionsJson)
         
         val newTransaction = JSONObject().apply {
@@ -29,12 +33,13 @@ class AmountInputModel(private val context: Context) : AmountInputContract.Model
         jsonArray.put(newTransaction)
 
         return sharedPref.edit().apply {
-            putInt("BALANCE", newBalance)
-            putString("TRANSACTIONS", jsonArray.toString())
+            putInt(balanceKey, newBalance)
+            putString(transactionsKey, jsonArray.toString())
         }.commit()
     }
 
     override fun getCurrentBalance(): Int {
-        return BaonBuddy.getSharedPrefs(context).getInt("BALANCE", 0)
+        val email = getCurrentEmail()
+        return BaonBuddy.getSharedPrefs(context).getInt("${email}_BALANCE", 0)
     }
 }

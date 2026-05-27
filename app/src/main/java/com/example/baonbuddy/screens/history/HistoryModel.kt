@@ -6,9 +6,14 @@ import org.json.JSONArray
 
 class HistoryModel(private val context: Context) : HistoryContract.Model {
 
+    private fun getCurrentEmail(): String {
+        return BaonBuddy.getSharedPrefs(context).getString("CURRENT_USER_EMAIL", "") ?: ""
+    }
+
     override fun getTransactions(): List<Transaction> {
         val sharedPref = BaonBuddy.getSharedPrefs(context)
-        val transactionsJson = sharedPref.getString("TRANSACTIONS", "[]")
+        val email = getCurrentEmail()
+        val transactionsJson = sharedPref.getString("${email}_TRANSACTIONS", "[]")
         val jsonArray = JSONArray(transactionsJson)
         val transactions = mutableListOf<Transaction>()
 
@@ -28,7 +33,8 @@ class HistoryModel(private val context: Context) : HistoryContract.Model {
 
     override fun deleteTransaction(position: Int): Boolean {
         val sharedPref = BaonBuddy.getSharedPrefs(context)
-        val transactionsJson = sharedPref.getString("TRANSACTIONS", "[]")
+        val email = getCurrentEmail()
+        val transactionsJson = sharedPref.getString("${email}_TRANSACTIONS", "[]")
         val jsonArray = JSONArray(transactionsJson)
         
         val actualIndex = jsonArray.length() - 1 - position
@@ -39,7 +45,8 @@ class HistoryModel(private val context: Context) : HistoryContract.Model {
         val type = itemToRemove.getString("type")
         val amount = itemToRemove.getInt("amount")
 
-        val currentBalance = sharedPref.getInt("BALANCE", 0)
+        val balanceKey = "${email}_BALANCE"
+        val currentBalance = sharedPref.getInt(balanceKey, 0)
         val newBalance = if (type == "EXPENSE") {
             currentBalance + amount
         } else {
@@ -54,8 +61,8 @@ class HistoryModel(private val context: Context) : HistoryContract.Model {
         }
 
         return sharedPref.edit().apply {
-            putInt("BALANCE", newBalance)
-            putString("TRANSACTIONS", newList.toString())
+            putInt(balanceKey, newBalance)
+            putString("${email}_TRANSACTIONS", newList.toString())
         }.commit()
     }
 }

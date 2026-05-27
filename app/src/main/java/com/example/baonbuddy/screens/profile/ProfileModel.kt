@@ -6,14 +6,18 @@ import org.json.JSONArray
 
 class ProfileModel(private val context: Context) : ProfileContract.Model {
 
+    private fun getCurrentEmail(): String {
+        return BaonBuddy.getSharedPrefs(context).getString("CURRENT_USER_EMAIL", "") ?: ""
+    }
+
     override fun getUserName(): String {
         val sharedPref = BaonBuddy.getSharedPrefs(context)
-        return sharedPref.getString("USER_NAME", "User") ?: "User"
+        val email = getCurrentEmail()
+        return sharedPref.getString("${email}_NAME", "User") ?: "User"
     }
 
     override fun getUserEmail(): String {
-        val sharedPref = BaonBuddy.getSharedPrefs(context)
-        return sharedPref.getString("USER_EMAIL", "No email") ?: "No email"
+        return getCurrentEmail()
     }
 
     override fun logout() {
@@ -23,16 +27,18 @@ class ProfileModel(private val context: Context) : ProfileContract.Model {
 
     override fun clearAllData() {
         val sharedPref = BaonBuddy.getSharedPrefs(context)
+        val email = getCurrentEmail()
         sharedPref.edit().apply {
-            putInt("BALANCE", 0)
-            putString("TRANSACTIONS", "[]")
+            putInt("${email}_BALANCE", 0)
+            putString("${email}_TRANSACTIONS", "[]")
             apply()
         }
     }
 
     override fun getStats(): Pair<Int, Int> {
         val sharedPref = BaonBuddy.getSharedPrefs(context)
-        val transactionsJson = sharedPref.getString("TRANSACTIONS", "[]")
+        val email = getCurrentEmail()
+        val transactionsJson = sharedPref.getString("${email}_TRANSACTIONS", "[]")
         val jsonArray = JSONArray(transactionsJson)
         var totalSpent = 0
         var totalBaon = 0
@@ -48,10 +54,12 @@ class ProfileModel(private val context: Context) : ProfileContract.Model {
     }
 
     override fun getSavingsGoal(): Int {
-        return BaonBuddy.getSharedPrefs(context).getInt("SAVINGS_GOAL", 0)
+        val email = getCurrentEmail()
+        return BaonBuddy.getSharedPrefs(context).getInt("${email}_SAVINGS_GOAL", 0)
     }
 
     override fun updateSavingsGoal(amount: Int) {
-        BaonBuddy.getSharedPrefs(context).edit().putInt("SAVINGS_GOAL", amount).apply()
+        val email = getCurrentEmail()
+        BaonBuddy.getSharedPrefs(context).edit().putInt("${email}_SAVINGS_GOAL", amount).apply()
     }
 }
