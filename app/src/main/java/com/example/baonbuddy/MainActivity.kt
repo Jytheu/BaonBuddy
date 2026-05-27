@@ -1,47 +1,31 @@
 package com.example.baonbuddy
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.navigation.NavigationBarView
+import com.example.baonbuddy.screens.login.LoginActivity
+import com.example.baonbuddy.screens.home.HomeActivity
+import com.example.baonbuddy.screens.onboarding.OnboardingActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        val nav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
-        nav.itemActiveIndicatorColor = null
-        nav.labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_LABELED
-        nav.selectedItemId = R.id.home
         window.statusBarColor = android.graphics.Color.parseColor("#00B58B")
 
-        nav.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.home -> true
-                R.id.history -> {
-                    startActivity(Intent(this, HistoryActivity::class.java))
-                    overridePendingTransition(0, 0)
-                    finish()
-                    true
-                }
-                R.id.profile -> {
-                    val intent = Intent(this, ProfileActivity::class.java)
-                    intent.putExtra("USER_NAME", "Jed") // data to be passed
-                    startActivity(intent)
-                    overridePendingTransition(0, 0)
-                    finish()
-                    true
-                }
-                else -> false
-            }
-        }
+        Handler(Looper.getMainLooper()).postDelayed({
+            val sharedPref = getSharedPreferences("BaonPrefs", Context.MODE_PRIVATE)
+            val isLoggedIn = sharedPref.getBoolean("IS_LOGGED_IN", false)
 
-        findViewById<FloatingActionButton>(R.id.fab_add).setOnClickListener {
-            startActivity(Intent(this, AddLogActivity::class.java))
-            //overridePendingTransition(0, 0)
-        }
+            if (isLoggedIn) {
+                startActivity(Intent(this, HomeActivity::class.java))
+            } else {
+                startActivity(Intent(this, OnboardingActivity::class.java))
+            }
+            finish()
+        }, 2000) // 2 sec delay
     }
 }

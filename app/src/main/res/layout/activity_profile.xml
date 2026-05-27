@@ -3,90 +3,239 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bbback">
+    android:background="#F8F9FA">
+
+    <!-- header -->
+    <LinearLayout
+        android:id="@+id/header_container"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#00B58B"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/ginto_nord_black"
+                android:text="Profile"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp" />
+        </RelativeLayout>
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/header_container"
         android:layout_above="@+id/nav_container"
+        android:layout_marginTop="-24dp"
         android:clipToPadding="false"
-        android:paddingBottom="20dp"
+        android:clipChildren="false"
         android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/rounded_bg2"
+            android:backgroundTint="#F8F9FA"
             android:orientation="vertical"
-            android:padding="24dp">
+            android:paddingHorizontal="16dp"
+            android:paddingTop="24dp"
+            android:paddingBottom="80dp"
+            android:clipToPadding="false"
+            android:clipChildren="false">
 
-            <ImageView
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:layout_marginTop="24dp"
-                android:layout_gravity="center"
-                android:src="@drawable/bbicon" />
-
-            <TextView
+            <!-- Profile Info Container -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Your Profile"
-                android:fontFamily="@font/avenir_roman"
-                android:textSize="20sp"
-                android:textColor="#000000"
-                android:textAlignment="center"
-                android:layout_marginTop="32dp"
-                android:layout_marginBottom="16dp" />
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="24dp">
 
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/bbicon" />
+
+                <TextView
+                    android:id="@+id/tv_profile_name_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/ginto_nord_black"
+                    android:text="Jed Delica"
+                    android:textColor="#333333"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/tv_profile_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/avenir_roman"
+                    android:text="jed@example.com"
+                    android:textColor="#888888"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- savings goal -->
             <androidx.cardview.widget.CardView
+                android:id="@+id/card_savings_goal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
                 app:cardCornerRadius="16dp"
-                app:cardElevation="6dp"
-                app:cardUseCompatPadding="true"
-                app:cardBackgroundColor="#FFFFFF"
-                android:layout_marginBottom="12dp">
-
-                <RelativeLayout
+                app:cardElevation="2dp"
+                app:cardUseCompatPadding="true">
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="20dp">
-
-                    <TextView
-                        android:id="@+id/tv_profile_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:text="Loading Name..."
-                        android:fontFamily="@font/ginto_nord_black"
-                        android:textSize="16sp"
-                        android:textColor="#000000" />
-
+                    android:orientation="vertical"
+                    android:padding="20dp"
+                    android:gravity="center">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:text="Log Out"
+                        android:text="Savings Goal"
+                        android:fontFamily="@font/avenir_roman"
+                        android:textSize="14sp"
+                        android:textColor="#888888" />
+                    <TextView
+                        android:id="@+id/tv_savings_goal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="₱0"
                         android:fontFamily="@font/ginto_nord_black"
-                        android:textSize="16sp"
-                        android:textColor="#E53935" />
-                </RelativeLayout>
+                        android:textSize="24sp"
+                        android:textColor="#333333" />
+                </LinearLayout>
             </androidx.cardview.widget.CardView>
 
+            <!-- stats -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:baselineAligned="false"
+                android:layout_marginBottom="16dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="2dp"
+                    app:cardUseCompatPadding="true">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp"
+                        android:gravity="center">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Total Spent"
+                            android:fontFamily="@font/avenir_roman"
+                            android:textSize="12sp"
+                            android:textColor="#888888" />
+                        <TextView
+                            android:id="@+id/tv_total_spent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="₱0"
+                            android:fontFamily="@font/ginto_nord_black"
+                            android:textSize="18sp"
+                            android:textColor="#E53935" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="2dp"
+                    app:cardUseCompatPadding="true">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp"
+                        android:gravity="center">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Total Baon"
+                            android:fontFamily="@font/avenir_roman"
+                            android:textSize="12sp"
+                            android:textColor="#888888" />
+                        <TextView
+                            android:id="@+id/tv_total_baon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="₱0"
+                            android:fontFamily="@font/ginto_nord_black"
+                            android:textSize="18sp"
+                            android:textColor="#00B58B" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <!-- actions -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="16dp"
-                app:cardElevation="6dp"
-                app:cardUseCompatPadding="true"
+                app:cardElevation="2dp"
                 app:cardBackgroundColor="#FFFFFF"
-                android:layout_marginBottom="12dp">
+                app:cardUseCompatPadding="true"
+                android:layout_marginBottom="24dp">
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:padding="20dp">
-                </RelativeLayout>
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="8dp">
 
+                    <TextView
+                        android:id="@+id/btn_clear_data"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp"
+                        android:text="Clear All Data"
+                        android:fontFamily="@font/avenir_roman"
+                        android:textColor="#333333"
+                        android:textSize="16sp"
+                        android:drawableEnd="@android:drawable/ic_menu_delete" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#F5F5F5"
+                        android:layout_marginHorizontal="16dp" />
+
+                    <TextView
+                        android:id="@+id/tv_logout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp"
+                        android:text="Log Out"
+                        android:fontFamily="@font/avenir_roman"
+                        android:textColor="#E53935"
+                        android:textSize="16sp"
+                        android:drawableEnd="@android:drawable/ic_lock_power_off" />
+
+                </LinearLayout>
             </androidx.cardview.widget.CardView>
 
         </LinearLayout>
@@ -112,6 +261,7 @@
             android:layout_weight="1"
             android:layout_marginEnd="12dp"
             android:background="@drawable/rounded_bg"
+            android:backgroundTint="#FFFFFF"
             android:elevation="8dp"
             app:itemIconTint="#00B58B"
             app:itemTextColor="#00B58B"

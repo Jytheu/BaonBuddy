@@ -12,4 +12,16 @@
         <item name="android:fontFamily">@font/avenir_roman</item>
         <item name="android:textSize">11sp</item>
     </style>
+    <style name="CategoryButton" parent="Widget.AppCompat.Button">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">80dp</item>
+        <item name="android:layout_columnWeight">1</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:background">@drawable/rounded_bg</item>
+        <item name="android:backgroundTint">#F5F5F5</item>
+        <item name="android:fontFamily">@font/ginto_nord_black</item>
+        <item name="android:textColor">#333333</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">16sp</item>
+    </style>
 </resources>

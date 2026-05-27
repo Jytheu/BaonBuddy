@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    android:gravity="center_horizontal"
+    android:padding="32dp">
+
+    <ImageView
+        android:id="@+id/btn_back"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="start"
+        android:background="@drawable/circle_bg"
+        android:backgroundTint="#00B58B"
+        android:padding="10dp"
+        android:src="@android:drawable/ic_menu_revert"
+        app:tint="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/tvInputLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:text="Enter Expense Amount"
+        android:fontFamily="@font/avenir_roman"
+        android:textColor="#888888"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/etAmount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@null"
+        android:fontFamily="@font/ginto_nord_black"
+        android:hint="0"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:textColor="#333333"
+        android:textSize="80sp"
+        android:textStyle="bold" />
+
+    <View
+        android:id="@+id/v_separator"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#EEEEEE"
+        android:layout_marginTop="8dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnConfirm"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_marginTop="64dp"
+        android:background="@drawable/rounded_bg2"
+        android:fontFamily="@font/ginto_nord_black"
+        android:text="Confirm"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/btnCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Cancel"
+        android:fontFamily="@font/avenir_roman"
+        android:textColor="#888888"
+        android:textSize="16sp"
+        android:padding="16dp" />
+
+</LinearLayout>

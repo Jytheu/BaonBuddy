@@ -1,111 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bbback"> <ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_above="@+id/nav_container"
-    android:clipToPadding="false"
-    android:paddingBottom="20dp"
-    android:scrollbars="none">
+    android:background="#F8F9FA">
 
+    <!-- header-->
     <LinearLayout
+        android:id="@+id/header_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
+        android:background="#00B58B"
         android:orientation="vertical"
         android:padding="24dp">
 
-        <ImageView
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:layout_marginTop="24dp"
-            android:layout_gravity="center"
-            android:src="@drawable/bbicon" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/ginto_nord_black"
+                android:text="History"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp" />
+        </RelativeLayout>
+    </LinearLayout>
 
+    <!-- transaction -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/header_container"
+        android:layout_above="@+id/nav_container"
+        android:layout_marginTop="-24dp"
+        android:background="@drawable/rounded_bg2"
+        android:backgroundTint="#F8F9FA"
+        android:orientation="vertical"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="24dp">
 
-
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvTransactions"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingBottom="80dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_transaction" />
 
         <TextView
+            android:id="@+id/tvEmptyState"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Your Transactions"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/no_transactions"
             android:fontFamily="@font/avenir_roman"
-            android:textSize="20sp"
-            android:textColor="#000000"
-            android:textAlignment="center"
-            android:layout_marginTop="32dp"
-            android:layout_marginBottom="16dp" />
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="6dp"
-            app:cardBackgroundColor="#FFFFFF"
-            android:layout_marginBottom="12dp">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="20dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:text="sb matcha"
-                    android:fontFamily="@font/ginto_nord_black"
-                    android:textSize="16sp"
-                    android:textColor="#000000" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:text="-₱125"
-                    android:fontFamily="@font/ginto_nord_black"
-                    android:textSize="16sp"
-                    android:textColor="#E53935" /> </RelativeLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="6dp"
-            app:cardBackgroundColor="#FFFFFF">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="20dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:text="xerox"
-                    android:fontFamily="@font/ginto_nord_black"
-                    android:textSize="16sp"
-                    android:textColor="#000000" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:text="-₱20"
-                    android:fontFamily="@font/ginto_nord_black"
-                    android:textSize="16sp"
-                    android:textColor="#E53935" />
-            </RelativeLayout>
-        </androidx.cardview.widget.CardView>
-
+            android:textSize="18sp"
+            android:textColor="#BBBBBB"
+            android:visibility="gone" />
     </LinearLayout>
-</ScrollView>
 
+    <!-- navbar-->
     <LinearLayout
         android:id="@+id/nav_container"
         android:layout_width="match_parent"
@@ -126,11 +85,11 @@
             android:layout_weight="1"
             android:layout_marginEnd="12dp"
             android:background="@drawable/rounded_bg"
+            android:backgroundTint="#FFFFFF"
             android:elevation="8dp"
             app:itemIconTint="#00B58B"
             app:itemTextColor="#00B58B"
             app:labelVisibilityMode="labeled"
-            app:itemRippleColor="#2000B58B"
             app:menu="@menu/bottom_nav_menu" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -142,7 +101,6 @@
             app:backgroundTint="#00B58B"
             app:tint="#FFFFFF"
             app:fabCustomSize="56dp" />
-
     </LinearLayout>
 
 </RelativeLayout>

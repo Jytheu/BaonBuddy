@@ -1,3 +1,46 @@
 <resources>
     <string name="app_name">BaonBuddy</string>
+    
+    <!-- Auth & Onboarding -->
+    <string name="tagline">Your minimalist allowance &amp; expense tracker.</string>
+    <string name="get_started">Get Started</string>
+    <string name="already_have_account">I already have an account</string>
+    <string name="create_account">Create an account</string>
+    <string name="signup_details">Enter your details to sign up for BaonBuddy</string>
+    <string name="welcome_back">Welcome Back</string>
+    <string name="login_details">Login to your BaonBuddy account</string>
+    <string name="name_hint">Name</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="login_btn">Log In</string>
+    <string name="signup_btn">Create your account</string>
+    
+    <!-- Home -->
+    <string name="balance_label">Remaining Balance</string>
+    
+    <!-- History -->
+    <string name="history_title">Your Transactions</string>
+    <string name="no_transactions">No transactions yet!</string>
+    <string name="delete_confirm">Delete transaction?</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    
+    <!-- Add Log / Amount Input -->
+    <string name="enter_amount">Enter Amount</string>
+    <string name="log_expense_btn">Log an\nExpense</string>
+    <string name="log_baon_btn">Log a Baon</string>
+    <string name="enter_expense_amount">Enter Expense Amount</string>
+    <string name="enter_baon_amount">Enter Baon Amount</string>
+    <string name="confirm">Confirm</string>
+    
+    <!-- Profile -->
+    <string name="profile_title">Your Profile</string>
+    <string name="logout">Log Out</string>
+    
+    <!-- Messages -->
+    <string name="err_empty_fields">Please fill in all fields</string>
+    <string name="err_invalid_auth">Invalid email or password</string>
+    <string name="err_user_not_found">User not found. Try signing up!</string>
+    <string name="err_invalid_amount">Please enter a valid amount</string>
+    <string name="msg_logged">Logged!</string>
 </resources>
